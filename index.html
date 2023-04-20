@@ -12,6 +12,81 @@
     <!-- Cover CSS -->
     <link href="style/cover.css" rel="stylesheet">
 
+    <script type = "text/javascript">  
+      // careful: bad and lazy code ahead
+      function load_pubs(){
+        var pubs = {
+          "Residual Q-Networks for Value Function Factorizing in Multiagent Reinforcement Learning": {
+            "authors": ["R. Pina", "V. D. Silva", "J. Hook", "A. Kondoz"],
+            "year": 2022,
+            "doi": "https://doi.org/10.1109/TNNLS.2022.3183865",
+            "journal": "IEEE Transactions on Neural Networks and Learning Systems",
+
+          },
+          "Overcoming Challenges of Applying Reinforcement Learning for Intelligent Vehicle Control": {
+            "authors": ["R. Pina", "H. Tibebu", "J. Hook", "V. D. Silva", "A. Kondoz"],
+            "year": 2021,
+            "doi": "https://doi.org/10.3390/s21237829",
+            "journal": "Sensors",
+          },
+          "Causality Detection for Efficient Multi-Agent Reinforcement Learning": {
+            "authors": ["R. Pina", "V. D. Silva", "C. Artaud"],
+            "year": 2023,
+            "doi": "https://doi.org/10.48550/arXiv.2303.14227",
+            "journal": "CoRR",
+          },
+          "Towards Interpretable Camera and LiDAR data fusion for Unmanned Autonomous Vehicles Localisation": {
+            "authors": ["H. Tibebu", "V. D. Silva", "C. Artaud", "R. Pina", "X. Shi"],
+            "year": 2022,
+            "doi": "https://doi.org/10.3390/s22208021",
+            "journal": "Sensors",
+          },
+          "Embedding Contextual Information through Reward Shaping in Multi-Agent Learning: A Case Study from Google Football": {
+            "authors": ["C. Gu", "V. D. Silva", "C. Artaud", "R. Pina"],
+            "year": 2023,
+            "doi": "https://doi.org/10.48550/arXiv.2303.15471",
+            "journal": "CoRR",
+          },
+        };
+
+        for (let p in pubs)
+        {
+          var parag = document.createElement("p");
+          parag.className = "pub-item";
+          var pub_string = "";
+          var l_auth = pubs[p]["authors"];
+
+          for (let i = 0; i < l_auth.length; i++)
+          {
+            var suf = ", ";
+            if (i == l_auth.length - 2)
+            {
+              suf = " and ";
+            }
+            pub_string += l_auth[i] + suf;
+          }    
+
+          var doi_s = pubs[p]["doi"].substring(pubs[p]["doi"].indexOf("doi.org") + 8, pubs[p]["doi"].length);   
+
+          pub_string += "<i>\"" + p + "\"</i>";
+          pub_string += " in " + pubs[p]["journal"] + " " + pubs[p]["year"] + ". ";
+          pub_string += "doi: " + "<a href=\"" + pubs[p]["doi"] + "\" target=\"_blank\">" + doi_s + "</a>.";
+
+          parag.innerHTML = pub_string;
+          
+          document.getElementById("pubs-div").appendChild(parag);
+
+        }
+      
+      }
+
+        window.onload = function() {
+          load_pubs();
+        };
+
+    </script> 
+
+
     <title>Rafael Pina</title>
   </head>
   <body>
@@ -46,7 +121,7 @@
 
       <main role="main" class="inner main">
         <h1 id="bio" class="main-heading">Rafael Pina - Bio</h1>
-        <p class="lead">Hi! I am Rafael and I am a PhD student at Loughborough University London. I have started my journey at the University of Coimbra, in Portugal, where I got my BSc in Informatics Engineering. I then came to Loughborough University London to pursue a MSc degree, where I have also worked as a Research Assistant during my masters. After completing my masters degree I started my PhD at Loughborough University London, where I also assist in teaching. </p>
+        <p class="lead">Hi! I am Rafael and I am a PhD student at Loughborough University London. I have started my journey at the University of Coimbra, in Portugal, where I got my BSc in Informatics Engineering. After that, I got myself into a plane London to pursue a MSc degree at Loughborough University London. During the time of my masters, I did works as a Research Assistant, which gave me a small taste of the world of research. After completing my masters degree I started my PhD at Loughborough University London. Since then, while carrying out my research, I have also been assisting in teaching.</p>
         
         <h3 id="edu" class="sub-heading">Education</h3>
         <p class="edu-item"><h5>2020 - Present</h5>PhD in Machine Intelligence @ Loughborough University London (UK)</p>
@@ -57,13 +132,14 @@
         <li>Multi-Agent Reinforcement Learning <b>(main research focus)</b></li>
         <li>Multi-Agent Systems</li>
         <li>Reinforcement Learning</li>
+        <li>Data Science</li>
         <li>Computer Security</li>
         <li>Maths</li>
         <li>Music, cinema, and books :)</li>
         
         <h3 id="pubs" class="sub-heading">Publications</h3>
-        <p class="pub-item">R. Pina, V. D. Silva, J. Hook and A. Kondoz, "Residual Q-Networks for Value Function Factorizing in Multiagent Reinforcement Learning" in IEEE Transactions on Neural Networks and Learning Systems, 2022, doi: <a href="https://doi.org/10.1109/TNNLS.2022.3183865" target="_blank">10.1109/TNNLS.2022.3183865</a>.</p>
-        <p class="pub-item">R. Pina, H. Tibebu, J. Hook, V. D. Silva, A. Kondoz, "Overcoming Challenges of Applying Reinforcement Learning for Intelligent Vehicle Control" in Sensors 2021, 21, 7829. doi: <a href="https://doi.org/10.3390/s21237829" target="_blank">10.3390/s21237829</a>.</p>
+        <div id="pubs-div"></div>
+        
         </main>
 
       <footer class="foot">
